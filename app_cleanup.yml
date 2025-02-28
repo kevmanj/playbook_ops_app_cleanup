@@ -4,4 +4,11 @@
   hosts: localhost
 
   roles: 
-    - role: create_script  
+    - role: create_script
+
+  tasks:
+    - name: Change mod
+      ansible.builtin.file:
+        path: /etc/cron.daily/app_cleanup.sh
+        mode: '0755'
+        state: file  
