@@ -1,0 +1,7 @@
+---
+- name: Cleanup playbook
+  become: yes
+  hosts: localhost
+
+  roles: 
+    - role: create_script  

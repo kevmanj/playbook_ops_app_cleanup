@@ -1,0 +1,13 @@
+- name: app log cleanup script
+  copy:
+    dest: /etc/cron.daily/app_cleanup.sh
+    content: |
+      #!/bin/sh
+
+
+      # Compress application logs older than X days
+      find /var/log/apache2 ! -name '*.gz' -type f -name '*.log*' -mtime +3 -print
+      find /var/log/apache2 ! -name '*.gz' -type f -name '*.txt*' -mtime +3 -print
+      # Remove compressed logs older than X days
+      find /var/log/apache2 -type f -name '*.gz' -mtime +7 -print
+  
